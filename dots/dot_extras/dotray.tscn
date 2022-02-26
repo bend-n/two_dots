@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="dotray" type="RayCast2D"]
+position = Vector2( 30, 60 )
+enabled = true
+cast_to = Vector2( 0, 0 )
+collision_mask = 2

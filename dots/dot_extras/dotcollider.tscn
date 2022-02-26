@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://dots/dot_extras/dotray.tscn" type="PackedScene" id=1]
+[ext_resource path="res://dots/dot_extras/dotcollider.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 30 )
+
+[node name="dotcollider" type="CollisionShape2D"]
+position = Vector2( 30, 30 )
+shape = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="dotray" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 32 )

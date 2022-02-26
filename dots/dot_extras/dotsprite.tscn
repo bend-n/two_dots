@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://dot.png" type="Texture" id=1]
+[ext_resource path="res://dots/dot_extras/dotsprite.gd" type="Script" id=2]
+
+[node name="dotsprite" type="Sprite"]
+texture = ExtResource( 1 )
+centered = false
+script = ExtResource( 2 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="pos" type="Position2D" parent="."]
+position = Vector2( 30, 59 )
