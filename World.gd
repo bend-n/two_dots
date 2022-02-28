@@ -10,8 +10,7 @@ var h = GlobalVars.height
 var w = GlobalVars.width
 
 var dots = {
-	"yellowdot" : load(dots_path + "yellowdot.tscn"),
-	"reddot" : load(dots_path + "reddot.tscn")
+	"dot" : load(dots_path + "plain_dot.tscn"),
 }
 
 func _ready():

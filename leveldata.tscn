@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://leveldata.gd" type="Script" id=1]
+
+[node name="leveldata" type="Node"]
+script = ExtResource( 1 )
+dot_colors = PoolColorArray( 1, 0.211765, 0.211765, 1, 0.25098, 0.701961, 1, 1, 1, 0.792157, 0.235294, 1, 0.67451, 0.317647, 1, 1 )

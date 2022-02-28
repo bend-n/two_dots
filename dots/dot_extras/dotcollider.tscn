@@ -13,3 +13,5 @@ script = ExtResource( 2 )
 
 [node name="dotray" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, 32 )
+collide_with_areas = true
+collide_with_bodies = false

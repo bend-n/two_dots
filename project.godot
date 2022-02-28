@@ -9,7 +9,7 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "KinematicBody2D",
+"base": "Area2D",
 "class": "dot",
 "language": "GDScript",
 "path": "res://dots/dot.gd"
@@ -31,6 +31,7 @@ Utils="*res://utils.gd"
 Events="*res://events.gd"
 EntityTracker="*res://entity_tracker.gd"
 InputHandler="*res://InputHandler.tscn"
+Leveldata="*res://leveldata.tscn"
 
 [debug]
 
