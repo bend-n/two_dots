@@ -9,18 +9,13 @@ var counted_done = 0
 var h = GlobalVars.height
 var w = GlobalVars.width
 
-var dots = {
-	"dot" : load(dots_path + "plain_dot.tscn"),
-}
-
 func _ready():
-	spawn_dots(dots)
+	spawn_dots(Leveldata.dots)
 	Events.connect("done_moving", self, "_on_dot_done_moving")
 	Events.connect("dots_done_moving", self, "_dots_done_moving")
 
-func spawn_dots(library : Dictionary):
-	var lib_size = library.keys().size()
-	var lib_keys = library.keys()
+func spawn_dots(library : Array):
+	var lib_size = library.size()
 	for wi in w:
 		for hi in h:
 			var current_row_item
@@ -28,7 +23,7 @@ func spawn_dots(library : Dictionary):
 				current_row_item = EntityTracker.rows[hi][wi]
 				if current_row_item != 0:
 					continue
-			var new_dot = choose_random_dot(lib_size, lib_keys, library)
+			var new_dot = choose_random_dot(lib_size, library)
 			EntityTracker.rows[hi].append(new_dot)
 			dots_holder.add_child(new_dot)
 			var offset = Vector2(GlobalVars.size.x * wi, GlobalVars.size.y * hi) 
@@ -36,11 +31,10 @@ func spawn_dots(library : Dictionary):
 			new_dot.global_position = new_pos
 	Events.emit_signal("level_initialized")
 
-func choose_random_dot(lib_size, lib_keys, library) -> Array:
+func choose_random_dot(lib_size, library) -> Array:
 	randomize()
 	var rand_number = randi() % lib_size
-	var lib_key = lib_keys[rand_number]
-	var new_dot = library[lib_key].instance()
+	var new_dot = library[rand_number].instance()
 	return new_dot
 
 func _on_dot_done_moving():

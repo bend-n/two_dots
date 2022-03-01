@@ -5,4 +5,3 @@
 
 [node name="plain_dot" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
-color = null

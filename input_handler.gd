@@ -9,6 +9,7 @@ onready var line = $Line2D
 func _pressed(event : InputEvent, node : dot):
 	if not GlobalVars.state == GlobalVars.states.player_turn:
 		return
+	print("aloh")
 	if line.get_point_count() > 0:
 		if node.color == line.default_color:
 			if not node in nodes_with_points:
@@ -27,7 +28,7 @@ func _pressed(event : InputEvent, node : dot):
 		line.add_point(line.get_global_mouse_position())
 		line.default_color = node.color
 	
-func _physics_process(delta):
+func _physics_process(_delta):
 	if line.get_point_count() > 0:
 		if Input.is_action_pressed("click") and pressed == true:
 			line.remove_point(line.get_point_count() - 1)

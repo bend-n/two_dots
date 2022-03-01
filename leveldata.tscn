@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://leveldata.gd" type="Script" id=1]
+[ext_resource path="res://dots/plain_dot.tscn" type="PackedScene" id=2]
 
 [node name="leveldata" type="Node"]
 script = ExtResource( 1 )
 dot_colors = PoolColorArray( 1, 0.211765, 0.211765, 1, 0.25098, 0.701961, 1, 1, 1, 0.792157, 0.235294, 1, 0.67451, 0.317647, 1, 1 )
+background_color = Color( 0.0352941, 0.168627, 0.403922, 1 )
+dots = [ ExtResource( 2 ) ]
