@@ -9,27 +9,33 @@ var counted_done = 0
 var h = GlobalVars.height
 var w = GlobalVars.width
 
+
 func _ready():
-	spawn_dots(Leveldata.dots)
 	Events.connect("done_moving", self, "_on_dot_done_moving")
 	Events.connect("dots_done_moving", self, "_dots_done_moving")
+	Events.connect("turn_over", self, "_move_dots")
+	Events.connect("level_initialized", self, "_move_dots")
+	spawn_dots(Leveldata.dots)
 
-func spawn_dots(library : Array):
+
+func spawn_dots(library: Array):
 	var lib_size = library.size()
 	for wi in w:
 		for hi in h:
 			var current_row_item
-			if GlobalVars.turns_used != 0: # if its the first turn, the arrays will be empty, and i dont want to pad them with " "
+			var new_dot = choose_random_dot(lib_size, library)
+			if GlobalVars.turns_used != 0:  # if its the first turn, the arrays will be empty, and i dont want to pad them with " "
 				current_row_item = EntityTracker.rows[hi][wi]
 				if current_row_item != 0:
 					continue
-			var new_dot = choose_random_dot(lib_size, library)
-			EntityTracker.rows[hi].append(new_dot)
+			else:
+				EntityTracker.rows[hi].append(new_dot)
 			dots_holder.add_child(new_dot)
-			var offset = Vector2(GlobalVars.size.x * wi, GlobalVars.size.y * hi) 
+			var offset = Vector2(GlobalVars.size.x * wi, GlobalVars.size.y * hi)
 			var new_pos = ($Corners/Position2D.global_position + offset).snapped(GlobalVars.size)
 			new_dot.global_position = new_pos
 	Events.emit_signal("level_initialized")
+
 
 func choose_random_dot(lib_size, library) -> Array:
 	randomize()
@@ -37,11 +43,21 @@ func choose_random_dot(lib_size, library) -> Array:
 	var new_dot = library[rand_number].instance()
 	return new_dot
 
+
 func _on_dot_done_moving():
 	counted_done += 1
 	if counted_done >= (w * h):
 		Events.emit_signal("dots_done_moving")
 		GlobalVars.state = GlobalVars.states.player_turn
+		print("dots done")
+
 
 func _dots_done_moving():
 	pass
+
+
+func _move_dots():
+	for row in EntityTracker._flip_rows():
+		for Dot in row:
+			Dot.move()
+			yield(get_tree(), "idle_frame")

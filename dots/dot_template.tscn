@@ -6,27 +6,24 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 35, 35 )
 
-[node name="dot_template" type="Area2D"]
-collision_layer = 2
-collision_mask = 0
+[node name="dot_template" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="dotsprite" type="Sprite" parent="."]
-position = Vector2( 5, -65 )
-texture = ExtResource( 2 )
-centered = false
+[node name="dot_collisions" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
-[node name="dotcollider" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 35, -35 )
+[node name="dotcollider" type="CollisionShape2D" parent="dot_collisions"]
 shape = SubResource( 1 )
 
-[node name="dotray" type="RayCast2D" parent="."]
-position = Vector2( 0, -70 )
+[node name="dotray" type="RayCast2D" parent="dot_collisions"]
 enabled = true
 cast_to = Vector2( 0, 1000 )
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 
-[connection signal="input_event" from="." to="." method="_on_dot_input"]
+[node name="dotsprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[connection signal="input_event" from="dot_collisions" to="." method="_on_dot_input"]
