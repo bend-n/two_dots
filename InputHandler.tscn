@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://input_handler.gd" type="Script" id=1]
+[ext_resource path="res://input_handler_line.gd" type="Script" id=2]
 
 [node name="InputHandler" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -10,3 +11,6 @@ default_color = Color( 0, 0, 0, 0 )
 joint_mode = 2
 end_cap_mode = 2
 antialiased = true
+
+[node name="to_mouse_line" type="Node2D" parent="."]
+script = ExtResource( 2 )
